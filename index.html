@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" type="text/css" href="css/styles.css" />
+        
+        <title>AWS | EC2 | RDS | LAMP | Drupal</title>
+    </head>
+
+    <body>
+        <header>
+            <h1>
+                AWS | EC2 | RDS |  LAMP |<span class="gold"> AWS Drupal Installation</span>
+            </h1>
+        </header>
+        <div class="introduction">
+            <p>
+                A consecuencia de ciertos requisitos encomendados a mi persona; resuelvo plasmar en el siguiente artículo, 
+                un protocolo básico para desarrollar un entorno de tipo: AWS | EC2 | RDS | LAMP | Drupal 9.x.x
+            </p>
+            <p>
+                Espero sea de su total agrado; ¡recordad! no pretende satisfacer los requitos de todo tipo de proyecto, adáptelo a sus necesidades, 
+                posee fines introductorios al desarrollo full-stack con Drupal. Pásela bien mejorando este protocolo y comparta sus versiones públicas mejoradas. 
+            </p>
+            <p>
+                ff
+            </p>
+            <p>
+               Requisitos: tener una cuenta AWS, tener conociemiento básico de ambientes LAMP - Drupal. 
+            </p>
+            <p>
+                Nota 1: los campos no mencionados en este protocolo deben ser conservados con los valores DEFAULT, para mayor nivel de detalle os aconsejo abrir 
+                las imagenes en una nueva pestaña del navegador, click derecho sobre la imagen, depues hacer click en 'abrir imagen en una pestaña nueva'.
+            </p>
+            <p>
+                Nota 2: haga enfacis en los espacios <mark>resaltados</mark> en las imagenes, señalan las zonas de interés. 
+            </p>
+        </div>     
+        <div class="container">
+            <ol>
+                <li class="section">
+                    <div class="section-1">
+                        <h2>Crear una base de datos MySQL con RDS</h2>
+                        <ol>             
+                            <li class="single-step">
+                                <div class="direction">
+                                    <p>
+                                        Iniciar sesión en la consola de AWS 
+                                    </p>
+                                </div>
+                                <div class="note">
+                                    <p>
+                                        Necesitará su correo electrónico y su contraseña de AWS., ingrese sus datos y haga click en 'iniciar sesión'.
+                                    </p> 
+                                    <p>
+                                        <a href="https://aws.amazon.com/es/console/"> Ir a consola AWS</a>
+                                    </p>             
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image1.jpg" alt="Image1">
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    <p>
+                                        Explorar la página de inicio de su consola AWS y hacer click en el vínculo 'RDS' del panel inferior
+                                    </p>
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image2.jpg" alt="Image2">
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Explorar en la sección de 'Amazon RDS' y hacer click en el vínculo 'Bases de datos' del panel lateral
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image3.jpg" alt="Image3">
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Explorar en la sección 'Bases de datos' y hacer click en el boton 'Crear base de datos', tarda un poco en cargar
+                                </div>
+                                <div class="single-step-image">
+                                   <img src="images/image4.jpg" alt="Image4"> 
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Elegir un método de creación de base de datos: seleccionar la opción 'Creación estándar'
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image5.jpg" alt="Image5">
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Opciones del motor: elegir 'MySQL'
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image6.jpg" alt="Image6">
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Plantillas: seleccionar 'Capa gratuita'
+                                </div>
+                                <div class="note">
+                                    <p>
+                                        Nota: puede elegir el tipo de capa que desee; totalmente a conveniencia de su propio proyecto e intereses. 
+                                    </p>
+                                </div> 
+                                <div class="single-step-image">
+                                    <img src="images/image7.jpg" alt="Image7">
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Configuración: introducir un ID (nombre) para la instancia que alojará la base de datos
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image8.jpg" alt="Image8">
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Configuración de credenciales (usuario y contraseña) de la base de datos
+                                </div>
+                                <div class="note">
+                                    <p>
+                                        Nota: siempre utilice una contraseña robusta, siempre puede probar un generador de contraseñas en linea. 
+                                    </p>
+                                    <p>
+                                        <a href="https://www.lastpass.com/es/features/password-generator">Ir a un generador de contraseñas en linea</a>
+                                    </p>
+                                </div> 
+                                <div class="single-step-image">
+                                   <img src="images/image9.jpg" alt="Image9"> 
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Configuración de la instancia: 'bd2.t2.micro' de tipo gratuita
+                                </div>
+                                <div class="note">
+                                    <p>
+                                        Nota: puede elegir el tipo de instancia que desee; totalmente a conveniencia de su propio proyecto e intereses. 
+                                    </p>
+                                </div> 
+                                <div class="single-step-image">
+                                   <img src="images/image10.jpg" alt="Image10"> 
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Configuración del tipo de almacenamiento
+                                </div>
+                                <div class="single-step-image">
+                                   <img src="images/image11.jpg" alt="Image11"> 
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                   Conectividad: seleccionar 'Don't connect to an EC2 compute resourse' y acceso público: 'Si'
+                                </div>
+                                <div class="single-step-image">
+                                   <img src="images/image12.jpg" alt="Image12"> 
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image13.jpg" alt="Image13"> 
+                                 </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                  Autenticación de la base de datos
+                                </div>
+                                <div class="single-step-image">
+                                   <img src="images/image14.jpg" alt="Image14"> 
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    En la sección 'Configuración adicional' introduzca un nombre para la nueva base de datos MySQL
+                                </div>
+                                <div class="single-step-image">
+                                   <img src="images/image15.jpg" alt="Image15"> 
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Finalizamos haciendo click en 'Crear base de datos', tarda un poco
+                                </div>
+                                <div class="single-step-image">
+                                   <img src="images/image16.jpg" alt="Image16"> 
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image17.jpg" alt="Image17"> 
+                                 </div>
+                                 <div class="single-step-image">
+                                    <img src="images/image18.jpg" alt="Image18"> 
+                                 </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                  Click sobre labase de datos, en la descripción debe localizar: el ID de VPC, ID del Grupo de seguridad de la VPC, punto de enlace y puerto
+                                </div>
+                                <div class="single-step-image">
+                                   <img src="images/image19.jpg" alt="Image19"> 
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="section">
+                    <div class="section-2">
+                        <h2>Crear una instancia EC2</h2>
+                        <ol>
+                            <li class="single-step">
+                                <div class="direction">
+                                   Acceder a la sección de Elastic Computing 2 (EC2)
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image20.jpg" alt="Image20"> 
+                                 </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                   Acceder a la sección de Instancias
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image21.jpg" alt="Image21"> 
+                                 </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                   Selecionar 'Lanzar instancias'
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image22.jpg" alt="Image22"> 
+                                 </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Asignamos un nombre a la instancia y seleccionamos el tipo de AMI 'Amazon Linux AWS'
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image23.jpg" alt="Image23"> 
+                                 </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Seleccionar el tipo de instancia a su propia conveniencia
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image24.jpg" alt="Image24"> 
+                                 </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Crear nuevo par de claves para las conexiones SSH
+                                </div>
+                                <div class="note">
+                                    <p>
+                                        Nota: si usted es usuario de Windows sera necesario que utilice PuTTY para realizar la conexion con la nueva
+                                        instancia EC2, asegurece de instalarlo. <a href="https://www.putty.org/">Descargar PuTTY</a>
+                                    </p>              
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image25.jpg" alt="Image25"> 
+                                 </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                    Ingresar un nombre para el nuevo par de claves, seleccionar RSA, seleccionar .pem para usuario Linux | .ppk para Windows y PuTTY
+                                </div>
+                                <div class="note">
+                                    <p>
+                                        Nota: si usted es usuario de Windows seleccione el formato .ppk | PuTTY lo requiere para realizar la conexión.</a>
+                                    </p>              
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image26.jpg" alt="Image26"> 
+                                 </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                   Crear par de claves y localizar el archivo descargado automaticamente
+                                </div>
+                                <div class="note">
+                                    <p>
+                                        Nota: si usted es usuario de Windows asegurece que el archivo descargado tenga el formato .ppk | PuTTY lo requiere para realizar la conexión.</a>
+                                    </p>              
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image27.jpg" alt="Image27"> 
+                                 </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                   Configurar el tipo de conexiones a la su nueva EC2 hL, en pasos posteriores se retomara el punto 
+                                </div>
+                                <div class="note">
+                                    <p>
+                                        Nota: las configuraciones de control de entrada y salida, grupo de seguridad, VCP y puertos, serán modificados en pasos 
+                                        posteriores; una vez que sea necesario realizar la primera conexión con la base de datos, por el momento utilice los 
+                                        datos referidos en la imagen siguiente.
+                                    </p>              
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image28.jpg" alt="Image28"> 
+                                 </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="direction">
+                                   Hacer clic en el boton 'Lanzar instancia' 
+                                </div>
+                                <div class="single-step-image">
+                                    <img src="images/image29.jpg" alt="Image29"> 
+                                 </div>
+                                 <div class="single-step-image">
+                                    <img src="images/image30.jpg" alt="Image30"> 
+                                 </div>
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="section">
+                    <div class="section-3">
+                        <h2>Probar la conexión SSH a EC2 con Windows y PuTTY</h2>
+                        <ol>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                       Ejecutar PuTTY y PuTTGen
+                                    </div>
+                                    <div class="note">
+                                        <p>
+                                            Nota: si aún no ha instalado PuTTY en su PC puede acceder al instalador en el siguiente hipervínculo, 
+                                            debe recordar que PuTTYGen es una herramienta para convertir llaves en formato ( .pem ) a llaves en formato ( .ppk ):
+                                            cabe recalcar que tal vez usted no requiera este paso, si y solo si usded descargo la llave en formato (.pem) cuando realizo
+                                            el setup de su nueva EC2 Amazon Linux (habiente L - hL).
+                                        </p>
+                                        <p>
+                                          </a><a href="https://www.putty.org/">Descargar PuTTY</a>
+                                        </p>               
+                                    </div>
+                                    <div class="single-step-image">
+                                        <img src="images/image31.jpg" alt="Image30"> 
+                                     </div>
+                                </div>
+                            </li>
+                        </ol>    
+                    </div>
+                </li>
+                <li class="section">
+                    <div class="section-4">
+                        <h2>Crear un usuario de base de datos (MySQL) a traves de nuestra EC2</h2>
+                        <ol>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Actualizar YUM
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                            sudo yum update -y
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Instalar un cliente MySQL en nuestra EC2; lo anterior cone le fin de poder manipular la base de datos
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                            sudo yum install -y mysql
+                                        </code>
+                                    </div>
+                                </div>    
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Agregamos la referencia al punto de enlace de la base de datos
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                            export MYSQL_HOST=drupal5.ccgpszrl7jvu.us-east-1.rds.amazonaws.com
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Probamos la conexión.
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                            mysql --user=Felipe --password=Fm1096461 drupal5
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Crear un usuario de base de datos para su aplicación de Drupal y otórguar permisos para acceder a la base de datos 'drupal5'
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                            CREATE USER 'Felipemr' IDENTIFIED BY 'Fm1096461';<br>
+                                            GRANT ALL PRIVILEGES ON drupal5.* TO Felipemr;<br>
+                                            FLUSH PRIVILEGES;<br>
+                                            Exit
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>    
+                    </div>
+                </li>
+                <li class="section">
+                    <div class="section-5">
+                        <h2>Activación de PHP 7.4 e instalación de httpd (Servidor apache)</h2>
+                        <ol>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Activar PHP 7.4 a traves de 'amazon-linux-extras'
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                          sudo amazon-linux-extras enable php7.4
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Borrar los 'metadatos generados'
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                          yum clean metadata
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Instalar 'httpd' (Servidor Apache) y el modulo 'mod_ssl' que maneja los certificados SSL
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                          sudo yum install httpd mod_ssl -y
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Instalar php7 y las extensiones necesarias
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                          sudo yum install php php-cli php-mysqlnd php-pdo php-common -y
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Instalar  otras extensiones necesarias
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                          sudo yum install php-gd php-mbstring php-xml php-dom php-opcache
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Cambiar ajuste de archivo de configuración de Apache 'httpd.conf'
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                            sudo nano /etc/httpd/conf/httpd.conf
+                                        </code>
+                                    </div>
+                                    <div class="explanation">
+                                        En este bloque, cambie 'AllowOverride None' por 'AllowOverride All'
+                                    </div>
+                                    <div class="code">
+<code>
+    <pre>
+         # Further relax access to the default document root:
+         Directory "/var/www/html"
+            #
+            # Possible values for the Options directive are "None", "All",
+            # or any combination of:
+            #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+            #
+            # Note that "MultiViews" must be named *explicitly* --- "Options All"
+            # doesn't give it to you.
+            #
+            # The Options directive is both complicated and important.  Please see
+            # http://httpd.apache.org/docs/2.4/mod/core.html#options
+            # for more information.
+            #
+            Options Indexes FollowSymLinks
+
+            #
+            # AllowOverride controls what directives may be placed in .htaccess files.
+            # It can be "All", "None", or any combination of the keywords:
+            #   Options FileInfo AuthConfig Limit
+            #
+            <span class="red"> AllowOverride None</span> //Delete
+            <span class="green"> AllowOverride All</span> //Set
+
+            #
+            # Controls who can get stuff from this server.
+            #
+            Require all granted
+        Directory
+    </pre>
+</code>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="section">
+                    <div class="section-6">
+                        <h2>Instalar Drupal</h2>
+                        <ol>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Descargar, descomprir y renombrar Drupal mediante la ejecución de los siguientes comandos en su terminal
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                            wget https://www.drupal.org/download-latest/tar.gz<br>
+                                            tar -xzf tar.gz<br>
+                                            mv drupal-* drupal<br>
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Cambiar al directorio drupal y copiar los archivos en la raíz de httpd (Apache) mediante los comandos siguientes
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                            cd drupal <br>
+                                            sudo rsync -avz . /var/www/html <br>
+                                            sudo chown -R apache:apache /var/www/html <br>
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Reiniciar el servicio de Apache
+                                    </div>
+                                    <div class="code">
+                                        <code>
+                                            sudo service httpd restart
+                                        </code>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </li>
+                <li class="section">
+                    <div class="section-6">
+                        <h2>Configurar Drupal</h2>
+                        <ol>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Acceder al Drupal desde el navegador Web mediante el DNS de IPv4 pública: ec2-3-82-236-241.compute-1.amazonaws.com
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Seleccionar lenguaje preferido
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Seleccionar un perfil de instalación: Estandar
+                                    </div>
+                                </div>
+                            </li> 
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Llenar los campos: 'Nombre de la base de datos', 'Nombre de usuario de la base de datos', 'Contraseña de la base de datos',
+                                        con la información utilizada al momento de crear la base de datos en la consola RDS
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="single-step">
+                                <div class="subcontainer">
+                                    <div class="explanation">
+                                        Por ultimo, en la sección 'opciones Avanzadas' ingresar en el campo 'Servidor' la dirección del punto de enlace y el puerto de la base de datos: 
+                                        drupal5.ccgpszrl7jvu.us-east-1.rds.amazonaws.com
+                                    </div>
+                                </div>
+                            </li>      
+                        </ol>
+                    </div>
+                </li>
+            </ol>           
+        </div>
+        Error
+The website encountered an unexpected error. Please try again later.
+Drupal\Core\Config\UnmetDependenciesException: Configuration objects provided by <em class="placeholder">standard</em> have unmet dependencies: <em class="placeholder">block_content.type.basic (block_content), comment.type.comment (comment), contact.form.feedback (contact), core.entity_form_display.block_content.basic.default (text), core.entity_form_display.node.article.default (image.style.thumbnail, comment, image, path, text), core.entity_form_display.node.page.default (path, text), core.entity_form_display.user.user.default (image.style.thumbnail, image), core.entity_view_display.node.article.default (image.style.wide, comment, image, text), core.entity_view_display.node.article.rss (core.entity_view_mode.node.rss), core.entity_view_display.node.article.teaser (core.entity_view_mode.node.teaser, image.style.medium, image, text), core.entity_view_display.node.page.teaser (core.entity_view_mode.node.teaser, text), editor.editor.basic_html (ckeditor, editor), field.field.block_content.basic.body (field.storage.block_content.body, text, field), field.field.comment.comment.comment_body (field.storage.comment.comment_body, text, field), field.field.node.article.body (field.storage.node.body, text, field), field.field.node.article.comment (comment, field), field.field.node.article.field_image (image, field), field.field.node.article.field_tags (field), field.storage.node.comment (comment, node, field), field.storage.node.field_image (file, image, node, field), field.storage.node.field_tags (node, taxonomy, field), field.storage.user.user_picture (file, image, field), filter.format.basic_html (editor, filter), filter.format.restricted_html (filter), node.type.article (node), rdf.mapping.comment.comment (comment, rdf), rdf.mapping.node.article (node, rdf), rdf.mapping.taxonomy_term.tags (taxonomy, rdf), taxonomy.vocabulary.tags (taxonomy), user.role.anonymous (comment, contact, filter, search), user.role.authenticated (comment, contact, filter, search, shortcut), user.role.content_editor (comment, contextual, file, node, path, taxonomy, toolbar, tour)</em> in Drupal\Core\Config\UnmetDependenciesException::create() (line 100 of core/lib/Drupal/Core/Config/UnmetDependenciesException.php).
+Drupal\Core\Config\UnmetDependenciesException::create('standard', Array) (Line: 530)
+Drupal\Core\Config\ConfigInstaller->checkConfigurationToInstall('module', 'standard') (Line: 132)
+Drupal\Core\ProxyClass\Config\ConfigInstaller->checkConfigurationToInstall('module', 'standard') (Line: 199)
+Drupal\Core\Extension\ModuleInstaller->install(Array, ) (Line: 83)
+Drupal\Core\ProxyClass\Extension\ModuleInstaller->install(Array, ) (Line: 1659)
+install_install_profile(Array) (Line: 700)
+install_run_task(Array, Array) (Line: 571)
+install_run_tasks(Array, NULL) (Line: 119)
+install_drupal(Object) (Line: 48)
+<br>
+
+https://ec2-3-82-236-241.compute-1.amazonaws.com/core/install.php?rewrite=ok&langcode=en&profile=standard
+
+
+    </body>
+</html>
